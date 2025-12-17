@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Grayscale Design System - Pure Black, White, Gray */
+    --background: 0 0% 4%;           /* Deep black #0a0a0a */
+    --foreground: 0 0% 98%;          /* Almost white #fafafa */
+
+    --card: 0 0% 10%;                /* Dark gray card #1a1a1a */
+    --card-foreground: 0 0% 98%;     /* White text on cards */
+
+    --popover: 0 0% 8%;              /* Slightly lighter than bg */
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;             /* White for primary elements */
+    --primary-foreground: 0 0% 4%;   /* Black text on white */
+
+    --secondary: 0 0% 15%;           /* Medium-dark gray */
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 15%;               /* Muted backgrounds */
+    --muted-foreground: 0 0% 63%;    /* Gray text #a0a0a0 */
+
+    --accent: 0 0% 20%;              /* Lighter gray for accents */
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 0% 35%;         /* Gray for destructive */
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 16%;              /* Subtle borders #2a2a2a */
+    --input: 0 0% 16%;               /* Input borders */
+    --ring: 0 0% 98%;                /* White focus ring */
+
+    --radius: 0.5rem;
+
+    /* Code snippet specific */
+    --code-bg: 0 0% 8%;              /* Code block background */
+    --code-border: 0 0% 20%;         /* Code block border */
+    
+    /* Hover states */
+    --hover: 0 0% 18%;               /* Subtle hover background */
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  code, pre {
+    @apply font-mono;
+  }
+}

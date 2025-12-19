@@ -2,6 +2,7 @@ import { Navbar } from "@/components/Navbar";
 import { Avatar } from "@/components/Avatar";
 import { getSuggestedUsers } from "@/data/Data";
 import { Heart, MessageCircle, UserPlus } from "lucide-react";
+import Avvvatars from "avvvatars-react";
 
 export default function Activity() {
   const suggestedUsers = getSuggestedUsers()
@@ -62,7 +63,7 @@ export default function Activity() {
               key={activity.id}
               className="flex items-center gap-4 p-4 bg-card border border-border rounded-lg hover:bg-hover transition-colors"
             >
-              <Avatar src={activity.user.avatar} alt={activity.user.fullName} size="md" />
+              <Avvvatars value={activity.user.username} size={32} style="shape" />
               <div className="flex-1">
                 <p className="text-sm">
                   <span className="font-semibold">{activity.user.username}</span>{" "}

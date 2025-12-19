@@ -33,14 +33,58 @@ export const addPost = async (req, res) => {
   }
 };
 
-export const getAllPost = async(req,res)=>{
+export const getAllPost = async (req, res) => {
   try {
-    const posts = await Post.find().lean()
+    const posts = await Post.find()
+      .populate("author")   // 🔥 populate author details
+      .lean();
+
     return res.status(200).json({
-      success:true,
-      posts
-    })
+      success: true,
+      posts,
+    });
   } catch (error) {
-   console.log(error) 
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to fetch posts",
+    });
   }
-}
+};
+
+export const deletePost = async (req, res) => {
+  try {
+    const postId = req.params.id;
+    const userId = req.id; // from auth middleware
+
+    const post = await Post.findById(postId);
+
+    if (!post) {
+      return res.status(404).json({
+        success: false,
+        message: "Post not found",
+      });
+    }
+
+    // 🔐 Authorization check
+    if (post.author.toString() !== userId.toString()) {
+      return res.status(403).json({
+        success: false,
+        message: "You are not allowed to delete this post",
+      });
+    }
+
+    await Post.findByIdAndDelete(postId);
+
+    return res.status(200).json({
+      success: true,
+      message: "Post deleted successfully",
+    });
+  } catch (error) {
+    console.error("Delete Post Error:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
+  }
+};

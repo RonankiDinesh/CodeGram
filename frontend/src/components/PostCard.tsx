@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Heart, MessageCircle, Bookmark, Share2, Github } from "lucide-react";
-import { Avatar } from "./Avatar";
+import Avvvatars from "avvvatars-react";
 import { Post } from "@/data/Data";
 import { cn } from "@/lib/utils";
 
@@ -22,7 +22,7 @@ export const PostCard = ({ post }: PostCardProps) => {
     <article className="bg-card border border-border rounded-lg overflow-hidden">
       {/* Header */}
       <div className="flex items-center gap-3 p-4">
-        <Avatar src={post.author.avatar} alt={post.author.fullName} size="md" />
+         <Avvvatars value={post.author} size={48} style="shape"/>
         <div className="flex-1">
           <div className="flex items-center gap-2">
             <span className="font-semibold text-sm">{post.author.username}</span>
@@ -33,6 +33,7 @@ export const PostCard = ({ post }: PostCardProps) => {
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               <Github className="w-4 h-4" />
+              {post.author.githubUsername}
             </a>
           </div>
           <span className="text-xs text-muted-foreground">{post.timestamp}</span>

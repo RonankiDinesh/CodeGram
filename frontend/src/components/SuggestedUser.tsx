@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Github } from "lucide-react";
 import { Avatar } from "./Avatar";
 import { User } from "@/data/Data";
+import Avvvatars from "avvvatars-react";
 
 interface SuggestedUserProps {
   user: User;
@@ -11,7 +12,7 @@ export const SuggestedUser = ({ user }: SuggestedUserProps) => {
   return (
     <div className="flex items-center gap-3 py-2">
       <Link to={`/profile/${user.username}`}>
-        <Avatar src={user.avatar} alt={user.fullName} size="md" />
+       <Avvvatars value={user.username} size={32} style="shape" />
       </Link>
       <div className="flex-1 min-w-0">
         <Link

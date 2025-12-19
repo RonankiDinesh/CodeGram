@@ -5,8 +5,8 @@ import jwt from "jsonwebtoken";
 
 export const register = async (req, res) => {
   try {
-    const { fullName, email, password, githubUsername, bio } = req.body;
-    if (!fullName || !email || !password || !githubUsername) {
+    const { fullName, email, password, githubUsername, bio,username } = req.body;
+    if (!fullName || !email || !password || !githubUsername || username) {
       return res.status(400).json({ message: "Some fields are missing" });
     }
     const userExists = await User.findOne({ email });
@@ -21,6 +21,7 @@ export const register = async (req, res) => {
       password: hashPassword,
       githubUsername: githubUsername,
       bio: bio,
+      username:username
     });
     const safeUser = user.toObject();
     delete safeUser.password;

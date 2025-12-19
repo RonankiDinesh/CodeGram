@@ -4,6 +4,7 @@ import { Avatar } from "./Avatar";
 import { cn } from "@/lib/utils";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/redux/store";
+import Avvvatars from "avvvatars-react";
 
 export const Navbar = () => {
   const location = useLocation();
@@ -80,7 +81,7 @@ export const Navbar = () => {
                 isActive(`/profile/${authUser?._id}`) && "ring-2 ring-foreground rounded-full"
               )}
             >
-              <Avatar src={authUser?.avatar} alt={authUser?.fullName} size="sm" />
+              <Avvvatars value={authUser.username} size={32} style="shape" />
             </Link>
           </div>
         </div>
